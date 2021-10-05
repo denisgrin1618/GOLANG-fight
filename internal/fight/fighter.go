@@ -7,13 +7,8 @@ type Fighter interface {
 	CanFight() bool
 }
 
-func Round(b Fighter, k Fighter) {
-	if !k.Dodge() {
-		k.GetDamage( b.Hit() )
+func Round(f1 Fighter, f2 Fighter) {
+	if !f2.Dodge() {
+		f2.GetDamage(f1.Hit())
 	}
-
 }
-
-
-
-

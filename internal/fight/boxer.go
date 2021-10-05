@@ -31,6 +31,5 @@ func (b *Boxer) CanFight() bool {
 }
 
 func (b Boxer) String() string {
-	//return fmt.Sprintf("%v (%v height, %v weight)", b.Name, b.Height, b.Weight)
 	return fmt.Sprintf("%v (%v height, %v weight)", b.Name, b.Height, b.Weight)
 }
