@@ -7,6 +7,7 @@ import (
 
 func main() {
 
+	const FightDuration = 100
 	var winner fight.Fighter
 
 	fighter1 := fight.Boxer{
@@ -28,7 +29,6 @@ func main() {
 		25,
 	}
 
-	FightDuration := 100
 	for c := 0; c < FightDuration; c++ {
 
 		fight.Round(&fighter1, &fighter2)

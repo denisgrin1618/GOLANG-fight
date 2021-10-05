@@ -16,10 +16,10 @@ type Karateka struct {
 }
 
 func (k *Karateka) Hit() int {
-	if rand.Intn(2) > 0 {
-		return k.DamageFist
-	}
-	return k.DamageLeg
+	//if rand.Intn(2) > 0 {
+	return k.DamageFist
+	//}
+	//return k.DamageLeg
 }
 
 func (k *Karateka) Dodge() bool {
