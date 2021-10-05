@@ -6,12 +6,12 @@ import (
 )
 
 type Karateka struct {
-	Name string
-	Height int
-	Weight float32
-	DamageFist int
-	DamageLeg int
-	Health int
+	Name               string
+	Height             int
+	Weight             float32
+	DamageFist         int
+	DamageLeg          int
+	Health             int
 	EvasionProbability int
 }
 

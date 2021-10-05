@@ -6,11 +6,11 @@ import (
 )
 
 type Boxer struct {
-	Name string
-	Height int
-	Weight float32
-	DamageFist int
-	Health int
+	Name               string
+	Height             int
+	Weight             float32
+	DamageFist         int
+	Health             int
 	EvasionProbability int
 }
 

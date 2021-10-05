@@ -8,12 +8,28 @@ import (
 func main() {
 
 	var winner fight.Fighter
-	
-	fighter1 := fight.Boxer{"Boxer", 184, 89.9, 100, 1000, 50}
-	fighter2 := fight.Karateka{"Karateka", 184, 89.9, 100, 120, 1000, 30}
+
+	fighter1 := fight.Boxer{
+		"Вася",
+		200,
+		120,
+		10,
+		113,
+		15,
+	}
+
+	fighter2 := fight.Karateka{
+		"Коля",
+		175,
+		65,
+		8,
+		25,
+		82,
+		25,
+	}
 
 	FightDuration := 100
-	for c:=0; c < FightDuration; c++ {
+	for c := 0; c < FightDuration; c++ {
 
 		fight.Round(&fighter1, &fighter2)
 		if !fighter1.CanFight() {
