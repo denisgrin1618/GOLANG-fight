@@ -3,6 +3,8 @@ package main
 import (
 	"TestFight/internal/fight"
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 func main() {
@@ -11,38 +13,29 @@ func main() {
 	var winner fight.Fighter
 
 	fighter1 := fight.Boxer{
-		"Вася",
-		200,
-		120,
-		10,
-		113,
-		15,
+		fight.Sportsman{"Вася", 200, 120, 10, 113, 15},
 	}
 
 	fighter2 := fight.Karateka{
-		"Коля",
-		175,
-		65,
-		8,
-		25,
-		82,
+		fight.Sportsman{"Коля", 175, 65, 8, 82, 25},
 		25,
 	}
+
+	first, second := fight.GetFirstSecond(&fighter1, &fighter2)
 
 	for c := 0; c < FightDuration; c++ {
 
-		fight.Round(&fighter1, &fighter2)
-		if !fighter1.CanFight() {
-			winner = &fighter2
+		rand.Seed(time.Now().Unix())
+		winner = fight.GetWinner(first, second)
+
+		fmt.Println(first, second)
+		if winner != nil {
 			break
 		}
 
-		fight.Round(&fighter2, &fighter1)
-		if !fighter2.CanFight() {
-			winner = &fighter1
-			break
-		}
+		first, second = second, first
 	}
 
+	fmt.Println("-------------------------------")
 	fmt.Println("Winner is ", winner)
 }

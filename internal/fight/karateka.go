@@ -6,34 +6,29 @@ import (
 )
 
 type Karateka struct {
-	Name               string
-	Height             int
-	Weight             float32
-	DamageFist         int
-	DamageLeg          int
-	Health             int
-	EvasionProbability int
+	MainProperties Sportsman
+	DamageLeg      int
 }
 
-func (k *Karateka) Hit() int {
+func (k Karateka) Hit() int {
 	//if rand.Intn(2) > 0 {
-	return k.DamageFist
+	return k.MainProperties.DamageFist
 	//}
-	//return k.DamageLeg
+	//return k.MainProperties.DamageLeg
 }
 
-func (k *Karateka) Dodge() bool {
-	return rand.Intn(100) < k.EvasionProbability
+func (k Karateka) Dodge() bool {
+	return rand.Intn(100) < k.MainProperties.EvasionProbability
 }
 
 func (k *Karateka) GetDamage(d int) {
-	k.Health -= d
+	k.MainProperties.Health -= d
 }
 
-func (k *Karateka) CanFight() bool {
-	return k.Health > 0
+func (k Karateka) CanFight() bool {
+	return k.MainProperties.Health > 0
 }
 
 func (k Karateka) String() string {
-	return fmt.Sprintf("%v (%v height, %v weight)", k.Name, k.Height, k.Weight)
+	return fmt.Sprintf("%v (%v health)", k.MainProperties.Name, k.MainProperties.Health)
 }
