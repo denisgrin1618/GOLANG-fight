@@ -37,5 +37,5 @@ func main() {
 	}
 
 	fmt.Println("-------------------------------")
-	fmt.Println("Winner is ", winner)
+	fmt.Println("\u001b[32m", "Winner is ", winner, "\u001b[0m")
 }
