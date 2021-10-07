@@ -25,7 +25,7 @@ func main() {
 
 	for c := 0; c < FightDuration; c++ {
 
-		rand.Seed(time.Now().Unix())
+		rand.Seed(time.Now().UnixNano())
 		winner = fight.GetWinner(first, second)
 
 		fmt.Println(first, second)

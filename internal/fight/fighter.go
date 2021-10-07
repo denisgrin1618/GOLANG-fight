@@ -13,12 +13,23 @@ type Fighter interface {
 }
 
 func GetWinner(f1 Fighter, f2 Fighter) Fighter {
+
+	//f1 hits first
 	if !f2.Dodge() {
 		f2.GetDamage(f1.Hit())
 	}
 
 	if !f2.CanFight() {
 		return f1
+	}
+
+	//f2 hits second
+	if !f1.Dodge() {
+		f1.GetDamage(f2.Hit())
+	}
+
+	if !f1.CanFight() {
+		return f2
 	}
 
 	return nil
