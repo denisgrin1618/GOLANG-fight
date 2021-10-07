@@ -1,6 +1,9 @@
 package fight
 
-import "math/rand"
+import (
+	"fmt"
+	"math/rand"
+)
 
 type Sportsman struct {
 	Name               string
@@ -21,4 +24,8 @@ func (s Sportsman) Dodge() bool {
 
 func (s Sportsman) CanFight() bool {
 	return s.Health > 0
+}
+
+func (s Sportsman) String() string {
+	return fmt.Sprintf("%v (%v health)", s.Name, s.Health)
 }

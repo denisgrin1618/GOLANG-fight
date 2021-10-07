@@ -1,9 +1,5 @@
 package fight
 
-import (
-	"fmt"
-)
-
 type Karateka struct {
 	Sportsman
 	DamageLeg int
@@ -18,8 +14,4 @@ type Karateka struct {
 
 func (k *Karateka) GetDamage(d int) {
 	k.Health -= d
-}
-
-func (k Karateka) String() string {
-	return fmt.Sprintf("%v (%v health)", k.Name, k.Health)
 }
