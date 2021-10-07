@@ -1,5 +1,7 @@
 package fight
 
+import "math/rand"
+
 type Sportsman struct {
 	Name               string
 	Height             int
@@ -9,18 +11,14 @@ type Sportsman struct {
 	EvasionProbability int
 }
 
-//func (s Sportsman) Hit() int {
-//	return s.DamageFist
-//}
-//
-//func (s Sportsman) Dodge() bool {
-//	return rand.Intn(100) < s.EvasionProbability
-//}
-//
-//func (s *Sportsman) GetDamage(d int) {
-//	s.Health -= d
-//}
-//
-//func (s Sportsman) CanFight() bool {
-//	return s.Health > 0
-//}
+func (s Sportsman) Hit() int {
+	return s.DamageFist
+}
+
+func (s Sportsman) Dodge() bool {
+	return rand.Intn(100) < s.EvasionProbability
+}
+
+func (s Sportsman) CanFight() bool {
+	return s.Health > 0
+}
