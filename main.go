@@ -3,7 +3,6 @@ package main
 import (
 	"TestFight/internal/fight"
 	"fmt"
-	"sync"
 )
 
 func main() {
@@ -12,7 +11,6 @@ func main() {
 	message2 := make(chan string)
 	message3 := make(chan string)
 	message4 := make(chan string)
-	var wg sync.WaitGroup
 
 	fighter1 := fight.Boxer{
 		fight.Sportsman{"Вася", 200, 120, 10, 100, 15},
@@ -37,11 +35,10 @@ func main() {
 	ring.AddFighter(&fighter3)
 	ring.AddFighter(&fighter4)
 
-	wg.Add(4)
-	go ring.StartFight(&fighter1, message1, &wg)
-	go ring.StartFight(&fighter2, message2, &wg)
-	go ring.StartFight(&fighter3, message3, &wg)
-	go ring.StartFight(&fighter4, message4, &wg)
+	go ring.StartFight(&fighter1, message1)
+	go ring.StartFight(&fighter2, message2)
+	go ring.StartFight(&fighter3, message3)
+	go ring.StartFight(&fighter4, message4)
 
 	for {
 		select {
@@ -51,14 +48,14 @@ func main() {
 			return
 		case msg1 := <-message1:
 			fmt.Println(msg1)
-		case msg1 := <-message2:
-			fmt.Println(msg1)
-		case msg1 := <-message3:
-			fmt.Println(msg1)
-		case msg1 := <-message4:
-			fmt.Println(msg1)
+		case msg2 := <-message2:
+			fmt.Println(msg2)
+		case msg3 := <-message3:
+			fmt.Println(msg3)
+		case msg4 := <-message4:
+			fmt.Println(msg4)
 		}
 	}
 
-	wg.Wait()
+	ring.Wait()
 }

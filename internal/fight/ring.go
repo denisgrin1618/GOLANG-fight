@@ -12,10 +12,17 @@ type Ring struct {
 	mutex         sync.Mutex
 	Done          chan bool
 	FightDuration int
+	wg            sync.WaitGroup
 }
 
 func NewRing(FightDuration int) Ring {
-	return Ring{[]Fighter{}, sync.Mutex{}, make(chan bool), FightDuration}
+	return Ring{
+		[]Fighter{},
+		sync.Mutex{},
+		make(chan bool),
+		FightDuration,
+		sync.WaitGroup{},
+	}
 }
 
 func (ring *Ring) AddFighter(f Fighter) {
@@ -71,7 +78,13 @@ func (ring *Ring) GetWinner() Fighter {
 	return nil
 }
 
-func (ring *Ring) StartFight(fighter Fighter, message chan string, wg *sync.WaitGroup) {
+func (ring *Ring) Wait() {
+	ring.wg.Wait()
+}
+
+func (ring *Ring) StartFight(fighter Fighter, message chan string) {
+
+	ring.wg.Add(1)
 
 	for i := 0; i < ring.FightDuration; i++ {
 		if ring.GetWinner() != nil {
@@ -80,18 +93,16 @@ func (ring *Ring) StartFight(fighter Fighter, message chan string, wg *sync.Wait
 		}
 
 		if !fighter.CanFight() {
-			wg.Done()
+			ring.wg.Done()
 			message <- fmt.Sprintf("%s, lost", fighter)
 			return
 		}
 
 		ring.RemoveFightersWhoCanNotFight()
 		opponent := ring.GetRandomOpponentFighter(fighter)
-		if opponent != nil && !opponent.Dodge() {
+		if opponent != nil {
 			opponent.GetDamage(fighter.Hit())
 			message <- fmt.Sprintf("%s -> %s", fighter, opponent)
 		}
-
 	}
-
 }
