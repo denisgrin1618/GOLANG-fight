@@ -10,6 +10,7 @@ type Fighter interface {
 	Dodge() bool
 	GetDamage(int)
 	CanFight() bool
+	GetCurrentRound() chan int
 }
 
 func GetWinner(f1 Fighter, f2 Fighter) Fighter {

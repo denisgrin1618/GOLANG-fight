@@ -12,6 +12,7 @@ type Sportsman struct {
 	DamageFist         int
 	Health             int
 	EvasionProbability int
+	CurrentRound       chan int
 }
 
 func (s Sportsman) Hit() int {
@@ -28,4 +29,8 @@ func (s Sportsman) CanFight() bool {
 
 func (s Sportsman) String() string {
 	return fmt.Sprintf("%v (%v health)", s.Name, s.Health)
+}
+
+func (s Sportsman) GetCurrentRound() chan int {
+	return s.CurrentRound
 }
